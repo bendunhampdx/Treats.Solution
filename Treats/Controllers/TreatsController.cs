@@ -11,6 +11,7 @@ using System.Security.Claims;
 
 namespace Treats.Controllers
 {
+  [Authorize]
   public class TreatsController : Controller
   {
     private readonly TreatsContext _db;
@@ -20,7 +21,7 @@ namespace Treats.Controllers
       _userManager = userManager;
       _db = db;
     }
-
+    
     public async Task<ActionResult> Index()
     {
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -64,6 +65,7 @@ namespace Treats.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+    [AllowAnonymous]
     public ActionResult Details(int id)
     {
       var thisTreat = _db.Treats

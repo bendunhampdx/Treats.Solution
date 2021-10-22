@@ -1,3 +1,31 @@
 @{
   Layout = "_Layout";
 }
+
+@model Treats.Models.Flavor;
+
+<div class="jumbotron">
+  <h2>Flavor Details</h2>
+</div>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
+
+@if(@Model.JoinEntities.Count == 0)
+{
+  <p>This Flavor is not associate with any Treats</p>
+}
+else
+{
+  <h4>Treats the Flavor is associated with:</h4>
+  <ul>
+  @foreach(var join in Model.JoinEntities)
+  {
+    <li>@join.Treat.Name</li>
+  }
+  </ul>
+}
+
+<p class="btn btn-default">@Html.ActionLink("Back to Flavors", "Index")</p>
+<p class="btn btn-default">@Html.ActionLink("Edit Flavor", "Edit", new { id = Model.FlavorId })</p>
+<p class="btn btn-default">@Html.ActionLink("Delete Flavor", "Delete", new { id = Model.FlavorId })</p>
+<p class="btn btn-default">@Html.ActionLink("Return Home", "Index", "Home")</p>
