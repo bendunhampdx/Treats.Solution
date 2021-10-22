@@ -83,4 +83,4 @@ Copyright 2021 Ben Dunham
 ## Support and contact details
 
 * [Ben Dunham](https://github.com/bendunhampdx) 
-* <bendunhampdx@.com>
+* <bendunhampdx@gmail.com>
