@@ -223,6 +223,27 @@ namespace Treats.Migrations
                     b.ToTable("Flavors");
                 });
 
+            modelBuilder.Entity("Treats.Models.FlavorTreat", b =>
+                {
+                    b.Property<int>("FlavorTreatId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("FlavorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TreatId")
+                        .HasColumnType("int");
+
+                    b.HasKey("FlavorTreatId");
+
+                    b.HasIndex("FlavorId");
+
+                    b.HasIndex("TreatId");
+
+                    b.ToTable("FlavorTreat");
+                });
+
             modelBuilder.Entity("Treats.Models.Treat", b =>
                 {
                     b.Property<int>("TreatId")
@@ -240,27 +261,6 @@ namespace Treats.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Treats");
-                });
-
-            modelBuilder.Entity("Treats.Models.TreatFlavor", b =>
-                {
-                    b.Property<int>("TreatFlavorId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("FlavorId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TreatId")
-                        .HasColumnType("int");
-
-                    b.HasKey("TreatFlavorId");
-
-                    b.HasIndex("FlavorId");
-
-                    b.HasIndex("TreatId");
-
-                    b.ToTable("TreatFlavor");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -314,16 +314,7 @@ namespace Treats.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Treats.Models.Treat", b =>
-                {
-                    b.HasOne("Treats.Models.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Treats.Models.TreatFlavor", b =>
+            modelBuilder.Entity("Treats.Models.FlavorTreat", b =>
                 {
                     b.HasOne("Treats.Models.Flavor", "Flavor")
                         .WithMany("JoinEntities")
@@ -340,6 +331,15 @@ namespace Treats.Migrations
                     b.Navigation("Flavor");
 
                     b.Navigation("Treat");
+                });
+
+            modelBuilder.Entity("Treats.Models.Treat", b =>
+                {
+                    b.HasOne("Treats.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Treats.Models.Flavor", b =>

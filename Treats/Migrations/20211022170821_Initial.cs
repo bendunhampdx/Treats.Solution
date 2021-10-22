@@ -187,25 +187,25 @@ namespace Treats.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TreatFlavor",
+                name: "FlavorTreat",
                 columns: table => new
                 {
-                    TreatFlavorId = table.Column<int>(type: "int", nullable: false)
+                    FlavorTreatId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     TreatId = table.Column<int>(type: "int", nullable: false),
                     FlavorId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TreatFlavor", x => x.TreatFlavorId);
+                    table.PrimaryKey("PK_FlavorTreat", x => x.FlavorTreatId);
                     table.ForeignKey(
-                        name: "FK_TreatFlavor_Flavors_FlavorId",
+                        name: "FK_FlavorTreat_Flavors_FlavorId",
                         column: x => x.FlavorId,
                         principalTable: "Flavors",
                         principalColumn: "FlavorId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_TreatFlavor_Treats_TreatId",
+                        name: "FK_FlavorTreat_Treats_TreatId",
                         column: x => x.TreatId,
                         principalTable: "Treats",
                         principalColumn: "TreatId",
@@ -250,13 +250,13 @@ namespace Treats.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_TreatFlavor_FlavorId",
-                table: "TreatFlavor",
+                name: "IX_FlavorTreat_FlavorId",
+                table: "FlavorTreat",
                 column: "FlavorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TreatFlavor_TreatId",
-                table: "TreatFlavor",
+                name: "IX_FlavorTreat_TreatId",
+                table: "FlavorTreat",
                 column: "TreatId");
 
             migrationBuilder.CreateIndex(
@@ -283,7 +283,7 @@ namespace Treats.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "TreatFlavor");
+                name: "FlavorTreat");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

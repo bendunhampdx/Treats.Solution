@@ -9,8 +9,8 @@ using Treats.Models;
 namespace Treats.Migrations
 {
     [DbContext(typeof(TreatsContext))]
-    [Migration("20211022170821_Initial")]
-    partial class Initial
+    [Migration("20211022204550_Secondary")]
+    partial class Secondary
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -225,25 +225,6 @@ namespace Treats.Migrations
                     b.ToTable("Flavors");
                 });
 
-            modelBuilder.Entity("Treats.Models.Treat", b =>
-                {
-                    b.Property<int>("TreatId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
-
-                    b.HasKey("TreatId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Treats");
-                });
-
             modelBuilder.Entity("Treats.Models.FlavorTreat", b =>
                 {
                     b.Property<int>("FlavorTreatId")
@@ -263,6 +244,25 @@ namespace Treats.Migrations
                     b.HasIndex("TreatId");
 
                     b.ToTable("FlavorTreat");
+                });
+
+            modelBuilder.Entity("Treats.Models.Treat", b =>
+                {
+                    b.Property<int>("TreatId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.HasKey("TreatId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Treats");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -316,15 +316,6 @@ namespace Treats.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Treats.Models.Treat", b =>
-                {
-                    b.HasOne("Treats.Models.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Treats.Models.FlavorTreat", b =>
                 {
                     b.HasOne("Treats.Models.Flavor", "Flavor")
@@ -342,6 +333,15 @@ namespace Treats.Migrations
                     b.Navigation("Flavor");
 
                     b.Navigation("Treat");
+                });
+
+            modelBuilder.Entity("Treats.Models.Treat", b =>
+                {
+                    b.HasOne("Treats.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Treats.Models.Flavor", b =>
