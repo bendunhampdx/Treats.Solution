@@ -20,5 +20,9 @@
   }
 </ul>
 
-<p class="btn btn-default">@Html.ActionLink("Add new flavor", "Create")</p>
+<br>
+@if (User.Identity.IsAuthenticated)
+{
+  <p class="btn btn-default">@Html.ActionLink("Create New Flavor", "Create")</p>
+}
 <p class="btn btn-default">@Html.ActionLink("Home", "Index", "Home")</p>
