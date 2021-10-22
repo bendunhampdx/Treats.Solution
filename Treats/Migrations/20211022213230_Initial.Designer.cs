@@ -9,8 +9,8 @@ using Treats.Models;
 namespace Treats.Migrations
 {
     [DbContext(typeof(TreatsContext))]
-    [Migration("20211022204550_Secondary")]
-    partial class Secondary
+    [Migration("20211022213230_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

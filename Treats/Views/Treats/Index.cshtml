@@ -25,8 +25,8 @@ else
 <br>
 @if (User.Identity.IsAuthenticated)
 {
-  <p>@Html.ActionLink("Create New Treat", "Create")</p>
+  <p class="btn btn-default">@Html.ActionLink("Create New Treat", "Create")</p>
 }
 
-<p>@Html.ActionLink("Return Home", "Index", "Home")</p>
-<p>@Html.ActionLink("View All Flavors", "Index", "Flavors")</p>
+<p class="btn btn-default">@Html.ActionLink("View All Flavors", "Index", "Flavors")</p>
+<p class="btn btn-default">@Html.ActionLink("Return Home", "Index", "Home")</p>
